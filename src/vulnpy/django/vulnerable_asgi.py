@@ -52,7 +52,8 @@ def get_trigger_view(name, trigger):
         template = get_template("{}.html".format(name))
 
         if name == "xss" and trigger == "raw":
-            template += "<p>XSS: " + user_input + "</p>"
+            import html
+            template += "<p>XSS: " + html.escape(user_input) + "</p>"
 
         return HttpResponse(template)
 
