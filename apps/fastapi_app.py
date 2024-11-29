@@ -36,6 +36,9 @@ async def upload_return_large_file(file: UploadFile = File(...)):
 
 @app.get("/cmdi")
 def cmdi(user_input: str):
+    ALLOWLIST = ["hello", "world", "test"]
+    if user_input not in ALLOWLIST:
+        return {"error": "Invalid command"}
     cmd = "echo " + user_input + " this should be echoed"
     print("Started app view")
     for i in range(10):
